@@ -104,6 +104,7 @@ rf <- randomForest(rating~.,data=temp[train,],ntree=data_mse$array_ntree[data_ms
 
 
 pred_rf <- predict(rf,t1[-train,])
+
 mean((pred_rf-temp[-train,]$imdb_score)^2)
 
 
