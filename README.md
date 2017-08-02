@@ -95,10 +95,14 @@ for(i in array_ntree)
 }
 
 data_mse <- data.frame(array_ntree,mse)
+
 ggplot(data_mse, aes(x=(array_ntree), y=mse)) + geom_line() + geom_point()
 
 set.seed(5)
+
 rf <- randomForest(rating~.,data=temp[train,],ntree=data_mse$array_ntree[data_mse$mse==min(data_mse$mse)],mtry=floor(dim(temp)[2]/3))
+
+
 pred_rf <- predict(rf,t1[-train,])
 mean((pred_rf-temp[-train,]$imdb_score)^2)
 
